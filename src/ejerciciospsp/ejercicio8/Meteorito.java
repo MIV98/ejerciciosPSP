@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package ejerciciospsp.ejercicio8;
 
 /**
@@ -9,5 +6,11 @@ package ejerciciospsp.ejercicio8;
  * @author MIV
  */
 public class Meteorito {
+    private NaveA naveA;
+    private NaveB naveB;
     
+    public Meteorito() {
+        this.naveA = null;
+        this.naveB = null;
+    }
 }

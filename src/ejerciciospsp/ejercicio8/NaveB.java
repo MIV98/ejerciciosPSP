@@ -8,6 +8,8 @@ package ejerciciospsp.ejercicio8;
  *
  * @author MIV
  */
-public abstract class Nave extends Thread {
+public class NaveB extends Nave {
+    public static final int NUM_NAVES_B = 3;
+    
     
 }
