@@ -10,5 +10,6 @@ package ejerciciospsp.ejercicio8;
  */
 public abstract class Nave extends Thread {
     private int combustible;
+    private HWWC empresa;
     
 }
