@@ -9,5 +9,6 @@ package ejerciciospsp.ejercicio8;
  * @author MIV
  */
 public abstract class Nave extends Thread {
+    private int combustible;
     
 }
