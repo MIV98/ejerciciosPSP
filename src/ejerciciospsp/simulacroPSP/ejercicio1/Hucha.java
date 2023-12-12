@@ -10,15 +10,19 @@ public class Hucha {
     
     public synchronized void ingresar(int cantidad) {
         this.cantidad += cantidad;
+        notifyAll();
     }
     
     public synchronized boolean retirar(int cantidad) {
-        if (this.cantidad < cantidad) {
-            return false;
-        } else {
-            this.cantidad -= cantidad;
+        while (this.cantidad < cantidad) {
+            try {
+                wait();
+            } catch (InterruptedException ex) {
+                System.err.println(ex.getMessage());
+            }
         }
-        this.notifyAll();
+        
+        this.cantidad -= cantidad;
         return true;
     }
 

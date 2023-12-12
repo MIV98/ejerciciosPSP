@@ -36,24 +36,10 @@ public class Cliente extends Thread {
             // null checks are necessary because of how getRandomChollo() is implemented
             Producto p = this.tienda.getRandomChollo();
             
-            while (this.productos.contains(p)) {
-                p = this.tienda.getRandomChollo();
-                if (p == null) break; // safety check or else it breaks?
-            }
-            
-            // ??
-            
-            if (p != null && p.getCurrStock() <= Producto.STOCK/2) {
+            if (p != null && (p.getCurrStock() <= Producto.STOCK/2 || rand.nextInt(100) < PORCENTAJE_COMPRA)) {
                 this.tienda.addVenta(p, this);
                 this.tienda.comprar(p);
                 this.productos.add(p);
-            } else {
-                if (rand.nextInt(100) < 30 && p != null) {
-                    // Tengo que registrar la venta antes de eliminar el producto, duh!
-                    this.tienda.addVenta(p, this);
-                    this.tienda.comprar(p);
-                    this.productos.add(p);
-                }
             }
         }
     }

@@ -38,7 +38,7 @@ public class Hijo extends Thread {
                     this.oldCant = currCant;
                     this.currCant = currCant + aux;
                     this.retiradas++;
-                } 
+                }
                 
             } catch (InterruptedException ex) {
                 System.err.println(ex.getMessage());

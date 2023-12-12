@@ -49,7 +49,7 @@ public class Producto {
         return Objects.equals(this.name, other.name);
     }
 
-    public int getCurrStock() {
+    public synchronized int getCurrStock() {
         return currStock;
     }
 
