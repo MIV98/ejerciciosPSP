@@ -18,21 +18,27 @@ class Conversacion {
         this.file = file;
     }
     
-    public synchronized void leerLinea() {
-        if (file.hasNext()) {
-            System.out.println(file.nextLine());
-        } else {
-            this.isOver = true;
+    public void leerLinea() {
+        synchronized (file) {
+            if (file.hasNext()) {
+                try {
+                    System.out.println(file.nextLine());
+                    Thread.sleep(500);
+                } catch (InterruptedException ex) {
+                    System.err.println(ex.getMessage());
+                }
+            } else {
+                this.isOver = true;
+            }
+
+            file.notify();
+
+            try {
+                file.wait();
+            } catch (InterruptedException ex) {
+                System.err.println(ex.getMessage());
+            }
         }
-        
-        file.notify();
-        
-        if (!this.isOver) try {
-            file.wait();
-        } catch (InterruptedException ex) {
-            System.err.println(ex.getMessage());
-        }
-        
     }
     
     public synchronized boolean isOver() {

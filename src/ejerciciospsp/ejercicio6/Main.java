@@ -16,10 +16,8 @@ public class Main {
     private static final String FILE_PATH = "pescadores.txt";
     
     public static void main(String[] args) {
-        Scanner file = null;
-        
-        try {
-            file = new Scanner(new File(FILE_PATH));
+
+        try (Scanner file = new Scanner(new File(FILE_PATH))) {
             Conversacion conv = new Conversacion(file);
             Persona p1 = new Persona("P1", conv);
             Persona p2 = new Persona("P2", conv);
@@ -27,10 +25,11 @@ public class Main {
             p1.start();
             p2.start();
             
-        } catch (FileNotFoundException ex) {
+            p1.join();
+            p2.join();
+            
+        } catch (FileNotFoundException | InterruptedException ex) {
             System.err.println(ex.getMessage());
-        } finally {
-            if (file != null) file.close();
         }
     }
 }
